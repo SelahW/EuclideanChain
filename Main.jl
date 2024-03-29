@@ -1,4 +1,4 @@
-function F(x::Int,y::Int)
+function FVerbose(x::Int,y::Int)
     total = 0
     originalx = x
     originaly = y
@@ -18,4 +18,31 @@ function F(x::Int,y::Int)
     end
     println("F($originalx,$originaly)=$(total + y + 1)")
     return total + y + 1
+end
+function F(x::Int,y::Int)
+    total = 0 
+    ComDiv = gcd(x,y)
+    if ComDiv ≠ 1
+        x ÷= ComDiv
+        y ÷= ComDiv
+    end
+    while x ≠ 1 && y ≠ 1
+        oldx = x
+        total += y ÷ x
+        x %= y
+        y %= oldx
+    end
+    return total + y + 1
+end
+function PathLength(c::Int,a...)
+    return F(sum(a),c)-1
+end
+function EarliestOccurance(n::Int)
+    j = 1
+    i = 1
+    if F(i,j) == n
+        return [(i,j)]
+    else
+        j+=1
+    end
 end
