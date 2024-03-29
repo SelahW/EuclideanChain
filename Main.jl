@@ -37,12 +37,3 @@ end
 function PathLength(c::Int,a...)
     return F(sum(a),c)-1
 end
-function EarliestOccurance(n::Int)
-    j = 1
-    i = 1
-    if F(i,j) == n
-        return [(i,j)]
-    else
-        j+=1
-    end
-end
